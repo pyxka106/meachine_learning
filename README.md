@@ -132,6 +132,7 @@ for model in model_pipeline:
     auc_list.append(round(auc(false_positive_rate, true_positive_rate), 2))
     cm_list.append(confusion_matrix(y_test, y_pred))
  ```
+ 
 ### Plot the Evaluation Result
 
 #### Confusion Matrix
@@ -147,7 +148,11 @@ for n in range(len(cm_list)):
     cm_plot.set_ylabel('Actual Values')
 plt.show()
 ```
-```
+
+<p align="center">
+  <img src="Figure_3.png" width="550" title="Confusion_Matrix">
+</p>
+
 #### ROC Curves
 ```python
 # plot ROC curves
@@ -163,7 +168,13 @@ for n in range(len(acc_list)):
     plt.ylabel('True Positive Rate')
     plt.legend(loc=4)
 plt.show()
+```
 
+<p align="center">
+  <img src="Figure_4.png" width="550" title="ROC_Curve">
+</p
+
+    
 # Accuracy and AUC
 result_df = pd.DataFrame({'Model': model_list, 'Accuracy': acc_list, 'AUC': auc_list})
 print(result_df)
