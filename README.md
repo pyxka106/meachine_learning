@@ -174,6 +174,7 @@ plt.show()
   <img src="Figure_4.png" width="550" title="ROC_Curve">
 </p
 
+#### Accuracy and AUC value
 ```python
 # Accuracy and AUC
 result_df = pd.DataFrame({'Model': model_list, 'Accuracy': acc_list, 'AUC': auc_list})
