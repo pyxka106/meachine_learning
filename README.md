@@ -34,7 +34,7 @@ for label in base_df.groupby('subject_id').columns:
 ```
 
 <p align="center">
-  <img src="Figure_1.png" width="350" title="CDR3_length">
+  <img src="Figure_1.png" width="550" title="CDR3_length">
 </p>
 
 ### Split Dataset into Training and Testing Set
@@ -92,7 +92,11 @@ plt.bar([i for i in features], fs.scores_)
 plt.show()
 ```
 
-### Set up Machine Learning Model Pipeline and Select the most precise model
+<p align="center">
+  <img src="Figure_2.png" width="50" title="Feature Selection">
+</p>
+
+### Set up Machine Learning Model Pipeline
 
 ```python
 # machine learning model pipeline
@@ -104,8 +108,14 @@ model_pipeline.append(DecisionTreeClassifier())
 model_pipeline.append(KNeighborsClassifier())
 model_pipeline.append(GaussianNB())
 model_list = ['Logistic Regression', 'Decision Tree', 'KNeighbors', 'GaussianNB']  # 'Random Forest',
+```
 
-# model evaluation
+### Model Evaluation and Selection of the most precise model
+- Accuracy
+- ROC Curve and AUC
+- Confusion Matrix
+
+```python
 acc_list = []
 auc_list = []
 cm_list = []
@@ -121,5 +131,36 @@ for model in model_pipeline:
     tpr_list.append(true_positive_rate)
     auc_list.append(round(auc(false_positive_rate, true_positive_rate), 2))
     cm_list.append(confusion_matrix(y_test, y_pred))
-    print(cm_list)
  ```
+### Plot the Evaluation Result
+
+```python
+# plot confusion matrix
+fig = plt.figure(figsize=(18, 10))
+for n in range(len(cm_list)):
+    con_matrix = cm_list[n]
+    model = model_list[n]
+    sub = fig.add_subplot(2, 2, n + 1).set_title(model)
+    cm_plot = sns.heatmap(con_matrix, annot=True, cmap='Blues', fmt='g')
+    cm_plot.set_xlabel('Predicted Values')
+    cm_plot.set_ylabel('Actual Values')
+plt.show()
+
+# plot ROC curves
+fig = plt.figure(figsize=(18, 10))
+for n in range(len(acc_list)):
+    auc_value = auc_list[n]
+    fpr = fpr_list[n]
+    tpr = tpr_list[n]
+    model = model_list[n]
+    sub = fig.add_subplot(2, 3, n + 1).set_title(model)
+    plt.plot(fpr, tpr, label="AUC=" + str(auc_value))
+    plt.xlabel('false Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.legend(loc=4)
+plt.show()
+
+# Accuracy and AUC
+result_df = pd.DataFrame({'Model': model_list, 'Accuracy': acc_list, 'AUC': auc_list})
+print(result_df)
+```
