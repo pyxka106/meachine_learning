@@ -71,11 +71,55 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 ### Features selection
 - select the most fitted features among these 5 parameters
+- use the most fitted features for following prediction
 
 ```python
-fs = SelectKBest(score_func=chi2, k=4)  # two possibilities: chi2, mutual_info_classif
-fs.fit(X_train, y_train)
-X_train_fs = fs.transform(X_train)
-X_test_fs = fs.transform(X_test)
-return X_train_fs, X_test_fs, fs
+def select_features(X_train, y_train, X_test):
+    fs = SelectKBest(score_func=chi2, k=4)  # two possibilities: chi2, mutual_info_classif
+    fs.fit(X_train, y_train)
+    X_train_fs = fs.transform(X_train)
+    X_test_fs = fs.transform(X_test)
+    return X_train_fs, X_test_fs, fs
+
+# feature selection
+X_train_fs, X_test_fs, fs = select_features(X_train_enc, y_train_enc, X_test_enc)
+
+# what are scores for the features
+for i, j in zip(features, range(len(fs.scores_))):
+    print(f'Feature {i}:  {fs.scores_[j]}')
+# # plot the scores
+plt.bar([i for i in features], fs.scores_)
+plt.show()
 ```
+
+### Set up Machine Learning Model Pipeline and Select the most precise model
+
+```python
+# machine learning model pipeline
+model_pipeline = []
+model_pipeline.append(LogisticRegression(solver='liblinear'))
+# model_pipeline.append(SVC())
+model_pipeline.append(DecisionTreeClassifier())
+# model_pipeline.append(RandomForestClassifier())
+model_pipeline.append(KNeighborsClassifier())
+model_pipeline.append(GaussianNB())
+model_list = ['Logistic Regression', 'Decision Tree', 'KNeighbors', 'GaussianNB']  # 'Random Forest',
+
+# model evaluation
+acc_list = []
+auc_list = []
+cm_list = []
+fpr_list = []
+tpr_list = []
+
+for model in model_pipeline:
+    model.fit(X_train_fs, y_train)
+    y_pred = model.predict(X_test_fs)
+    acc_list.append(accuracy_score(y_test, y_pred))
+    false_positive_rate, true_positive_rate, _ = roc_curve(y_test, y_pred)
+    fpr_list.append(false_positive_rate)
+    tpr_list.append(true_positive_rate)
+    auc_list.append(round(auc(false_positive_rate, true_positive_rate), 2))
+    cm_list.append(confusion_matrix(y_test, y_pred))
+    print(cm_list)
+ ```
