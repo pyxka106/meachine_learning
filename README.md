@@ -32,7 +32,7 @@ for label in base_df.groupby('subject_id').columns:
 ```
 
 <p align="center">
-  <img src="data/Figure_1.png" width="350" title="CDR3_length">
+  <img src="Figure_1.png" width="350" title="CDR3_length">
 </p>
 
 ### Split Dataset into Training and Testing Set
@@ -40,8 +40,6 @@ for label in base_df.groupby('subject_id').columns:
 # adapted from https://towardsdatascience.com/top-machine-learning-algorithms-for-classification-2197870ff501
 def load_dataset(filename):
     data = read_csv(filename, sep=',')
-    print(data.columns.values)
-    print(data)
 
     x_1 = data.iloc[:, 0:9]
     print(x_1)
