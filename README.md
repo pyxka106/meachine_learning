@@ -21,6 +21,8 @@ df1.to_csv('./testtable.csv', sep=',', index=False)
 ```
 
 ### Exploratory Data Analysis (EDA)
+- robust analysis of each parameter
+
 ```python
 for label in base_df.groupby('subject_id').columns:
     plt.hist(df[df['CD4/8'] == '1'][label], color='blue', label='CD4', alpha=0.7, density=True)
@@ -36,6 +38,8 @@ for label in base_df.groupby('subject_id').columns:
 </p>
 
 ### Split Dataset into Training and Testing Set
+- firstly need to encode the categorical parameters (v_gene and j_gene)
+
 ```python
 # adapted from https://towardsdatascience.com/top-machine-learning-algorithms-for-classification-2197870ff501
 def load_dataset(filename):
