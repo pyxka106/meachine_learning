@@ -93,7 +93,7 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="Figure_2.png" width="50" title="Feature Selection">
+  <img src="Figure_2.png" width="550" title="Features Selction">
 </p>
 
 ### Set up Machine Learning Model Pipeline
@@ -134,6 +134,7 @@ for model in model_pipeline:
  ```
 ### Plot the Evaluation Result
 
+#### Confusion Matrix
 ```python
 # plot confusion matrix
 fig = plt.figure(figsize=(18, 10))
@@ -145,7 +146,10 @@ for n in range(len(cm_list)):
     cm_plot.set_xlabel('Predicted Values')
     cm_plot.set_ylabel('Actual Values')
 plt.show()
-
+```
+```
+#### ROC Curves
+```python
 # plot ROC curves
 fig = plt.figure(figsize=(18, 10))
 for n in range(len(acc_list)):
