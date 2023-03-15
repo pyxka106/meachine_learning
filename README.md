@@ -19,3 +19,14 @@ df = pd.concat([df_cd4, df_cd8], ignore_index=True, sort=False)
 df1 = df[['v_gene', 'j_gene', 'cdr3_length', 'v_deletions', 'j_deletions', 'CD4/8']].reset_index(drop=True)
 df1.to_csv('./testtable.csv', sep=',', index=False)
 ```
+
+### Features selection
+- select the most fitted features among these 5 parameters
+
+```python
+fs = SelectKBest(score_func=chi2, k=4)  # two possibilities: chi2, mutual_info_classif
+fs.fit(X_train, y_train)
+X_train_fs = fs.transform(X_train)
+X_test_fs = fs.transform(X_test)
+return X_train_fs, X_test_fs, fs
+```
