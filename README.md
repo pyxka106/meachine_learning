@@ -33,7 +33,7 @@ for label in base_df.groupby('subject_id').columns:
 ```
 
 <p align="center">
-  <img src="Figure_1.png" width="550" title="CDR3_length">
+  <img src="data/Figure_1.png" width="550" title="CDR3_length">
 </p>
 
 ## Split Dataset into Training and Testing Set
@@ -93,7 +93,7 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="Figure_2.png" width="550" title="Features Selction">
+  <img src="data/Figure_2.png" width="550" title="Features Selction">
 </p>
 
 - As shown in the above figure, the four most fitted parameters are **`v_gene`**, **`j_gene`**, **`v_deletions`**, **`j_deletions`**.
@@ -152,7 +152,7 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="Figure_3.png" width="550" title="Confusion_Matrix">
+  <img src="data/Figure_3.png" width="550" title="Confusion_Matrix">
 </p>
 
 ### ROC Curves
@@ -173,7 +173,7 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="Figure_4.png" width="550" title="ROC_Curve">
+  <img src="data/Figure_4.png" width="550" title="ROC_Curve">
 </p>
 
 ### Accuray and AUC values
