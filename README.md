@@ -173,7 +173,7 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="data/Figure_4.png" width="550" title="ROC_Curve">
+  <img src="data/Figure_ROC.png" width="550" title="ROC_Curve">
 </p>
 
 ### Accuray and AUC values
