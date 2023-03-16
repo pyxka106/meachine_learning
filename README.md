@@ -3,7 +3,7 @@
 - Classification model identifies **which Cells (CD4 or CD8) a sequences belongs to**
 
 ## Load Trained Dataset and Data Overview
-- A **training base table** is typically stored in a pandas dataframe. Several important variables in the basetable are : **`v_gene`**, **`j_gene`**, **`cdr3_length`**, **`v_deletions`**, **`j_deletions`** and the target CD4 or CD8 column **`CD4/8`**
+- A **training base table** is typically stored in a pandas dataframe. Several important variables in the basetable are : **`v_gene`**, **`j_gene`**, **`cdr3_length`**, **`v_deletions`**, **`j_deletions`**, etc. and the target CD4 or CD8 column **`CD4/8`**
 - **CD4/8** is the event to **`predict`**
 
 ```python
