@@ -16,7 +16,7 @@ df_cd8 = pd.read_csv('./cd8_basetable.csv', sep='\t')
 df_cd8['CD4/8'] = 'CD8'
 df = pd.concat([df_cd4, df_cd8], ignore_index=True, sort=False)
 
-df1 = df[['v_gene', 'j_gene', 'cdr3_length', 'v_deletions', 'j_deletions', 'CD4/8']].reset_index(drop=True)
+df1 = df[['v_gene', 'j_gene', 'cdr3_length', 'v_deletions', 'j_deletions', 'd5_deletions', 'd3_deletions', 'n1_insertions', 'n2_insertions', 'CD4/8']].reset_index(drop=True)
 df1.to_csv('./testtable.csv', sep=',', index=False)
 ```
 
@@ -70,7 +70,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 ```
 
 ### Features Selection
-- select the most fitted features among these 5 parameters
+- set k-mer as 4
+- select the most fitted four features among these 9 parameters
 - use the most fitted features for following prediction
 
 ```python
@@ -95,6 +96,8 @@ plt.show()
 <p align="center">
   <img src="Figure_2.png" width="550" title="Features Selction">
 </p>
+
+- As shown in the above figure, the four most fitted parameters are **`v_gene`**, **`j_gene`**, **`v_deletions`**, **`j_deletions`**.
 
 ### Set up Machine Learning Model Pipeline
 
@@ -185,6 +188,7 @@ print(result_df)
 
 |  Model  |Accuracy| Incidence|
 :--------:|:------:|:--------:|
-| Logistic Regression |20850   |0.0431    |
-|average  |62950   |0.0492    |
-|high     |16200   |0.0615    |
+| Logistic Regression |0.659947   |0.50    |
+| Decision Tree |0.677196   |0.56    |
+| KNeighbors |0.629360   |0.56    |
+| GaussianNB |0.659838   |0.50    |
