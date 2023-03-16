@@ -183,7 +183,7 @@ plt.show()
 result_df = pd.DataFrame({'Model': model_list, 'Accuracy': acc_list, 'AUC': auc_list})
 print(result_df)
 ```
-#### The predictor insight graph table
+#### The Evaluation Results Table
 
 |  Model  |Accuracy| AUC Score|
 :--------:|:------:|:--------:|
