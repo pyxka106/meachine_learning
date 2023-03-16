@@ -185,7 +185,7 @@ print(result_df)
 ```
 #### The predictor insight graph table
 
-|  Model  |Accuracy| Incidence|
+|  Model  |Accuracy| AUC Score|
 :--------:|:------:|:--------:|
 | Logistic Regression |0.659947   |0.50    |
 | Decision Tree |0.677196   |0.56    |
