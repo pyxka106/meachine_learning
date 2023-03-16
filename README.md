@@ -2,8 +2,7 @@
 Build ML classification model with selected parameters training TERI baseline\
 Classification model identifies **which Cells a sequences belongs to**
 
-## Build Classification Model Pipeline
-### Load Trained Dataset and Data Overview
+## Load Trained Dataset and Data Overview
 - A **training base table** is typically stored in a pandas dataframe. Several important variables in the basetable are : **`v_gene`**, **`j_gene`**, **`cdr3_length`**, **`v_deletions`**, **`j_deletions`** and the target CD4 or CD8 column **`CD4/8`**
 - **CD4/8** is the event to **`predict`**
 
@@ -20,7 +19,7 @@ df1 = df[['v_gene', 'j_gene', 'cdr3_length', 'v_deletions', 'j_deletions', 'd5_d
 df1.to_csv('./testtable.csv', sep=',', index=False)
 ```
 
-### Exploratory Data Analysis (EDA)
+## Exploratory Data Analysis (EDA)
 - robust analysis of each parameter
 
 ```python
@@ -37,7 +36,7 @@ for label in base_df.groupby('subject_id').columns:
   <img src="Figure_1.png" width="550" title="CDR3_length">
 </p>
 
-### Split Dataset into Training and Testing Set
+## Split Dataset into Training and Testing Set
 - firstly need to encode the categorical parameters (v_gene and j_gene)
 
 ```python
@@ -69,7 +68,7 @@ def load_dataset(filename):
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
 ```
 
-### Features Selection
+## Features Selection
 - set k-mer as 4
 - select the most fitted four features among these 9 parameters
 - use the most fitted features for following prediction
@@ -99,7 +98,7 @@ plt.show()
 
 - As shown in the above figure, the four most fitted parameters are **`v_gene`**, **`j_gene`**, **`v_deletions`**, **`j_deletions`**.
 
-### Set up Machine Learning Model Pipeline
+## Build Classification Model Pipeline
 
 ```python
 # machine learning model pipeline
@@ -113,7 +112,7 @@ model_pipeline.append(GaussianNB())
 model_list = ['Logistic Regression', 'Decision Tree', 'KNeighbors', 'GaussianNB']  # 'Random Forest',
 ```
 
-### Model Evaluation and Selection of the most precise model
+## Model Evaluation and Selection of the most precise model
 - Accuracy
 - ROC Curve and AUC
 - Confusion Matrix
@@ -136,9 +135,9 @@ for model in model_pipeline:
     cm_list.append(confusion_matrix(y_test, y_pred))
  ```
  
-### Plot the Evaluation Result
+## Plot the Evaluation Result
 
-#### Confusion Matrix
+### Confusion Matrix
 ```python
 # plot confusion matrix
 fig = plt.figure(figsize=(18, 10))
@@ -156,7 +155,7 @@ plt.show()
   <img src="Figure_3.png" width="550" title="Confusion_Matrix">
 </p>
 
-#### ROC Curves
+### ROC Curves
 ```python
 # plot ROC curves
 fig = plt.figure(figsize=(18, 10))
@@ -177,7 +176,7 @@ plt.show()
   <img src="Figure_4.png" width="550" title="ROC_Curve">
 </p>
 
-#### Accuray and AUC values
+### Accuray and AUC values
 
 ```python
 # Accuracy and AUC
