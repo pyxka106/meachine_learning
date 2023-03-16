@@ -187,7 +187,7 @@ print(result_df)
 
 |  Model  |Accuracy| AUC Score|
 :--------:|:------:|:--------:|
-| Logistic Regression |0.659947   |0.50    |
-| Decision Tree |0.677196   |0.56    |
-| KNeighbors |0.629360   |0.56    |
-| GaussianNB |0.659838   |0.50    |
+| Logistic Regression |0.659947   |0.54    |
+| Decision Tree |0.677201   |0.66    |
+| KNeighbors |0.629360   |0.58    |
+| GaussianNB |0.659838   |0.54    |
