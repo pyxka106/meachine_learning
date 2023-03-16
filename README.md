@@ -69,7 +69,7 @@ def load_dataset(filename):
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
 ```
 
-### Features selection
+### Features Selection
 - select the most fitted features among these 5 parameters
 - use the most fitted features for following prediction
 
@@ -181,3 +181,10 @@ plt.show()
 result_df = pd.DataFrame({'Model': model_list, 'Accuracy': acc_list, 'AUC': auc_list})
 print(result_df)
 ```
+#### The predictor insight graph table
+
+|  Model  |Accuracy| Incidence|
+:--------:|:------:|:--------:|
+| Logistic Regression |20850   |0.0431    |
+|average  |62950   |0.0492    |
+|high     |16200   |0.0615    |
