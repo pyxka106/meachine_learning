@@ -164,7 +164,7 @@ for n in range(len(acc_list)):
     fpr = fpr_list[n]
     tpr = tpr_list[n]
     model = model_list[n]
-    sub = fig.add_subplot(2, 3, n + 1).set_title(model)
+    sub = fig.add_subplot(2, 2, n + 1).set_title(model)
     plt.plot(fpr, tpr, label="AUC=" + str(auc_value))
     plt.xlabel('false Positive Rate')
     plt.ylabel('True Positive Rate')
