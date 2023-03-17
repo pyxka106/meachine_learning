@@ -1,5 +1,5 @@
 # Predictive-Analysis-of-CD4/8 ratio
-- Build ML classification model with selected parameters training TERI baseline\
+- Build ML classification model with selected parameters training TERI baseline
 - Classification model identifies **which Cells (CD4 or CD8) a sequences belongs to**
 
 ## Load Trained Dataset and Data Overview
