@@ -23,13 +23,20 @@ df1.to_csv('./testtable.csv', sep=',', index=False)
 - robust analysis of each parameter
 
 ```python
-for label in base_df.groupby('subject_id').columns:
-    plt.hist(df[df['CD4/8'] == '1'][label], color='blue', label='CD4', alpha=0.7, density=True)
-    plt.hist(df[df['CD4/8'] == '0'][label], color='red', label='CD8', alpha=0.7, density=True)
+df = df1[['cdr3_length', 'v_gene', 'j_gene', 'v_deletions', 'j_deletions', 'CD4/8']]
+new_cols = [col for col in df.columns if col != 'CD4/8'] + ['CD4/8']
+base_df = df[new_cols]
+cols = df.columns.values
+# plotting the training data
+for label in cols[:-1]:
+    print(label)
+    plt.hist(df[df['CD4/8'] == 'CD4'][label], color='blue', label='CD4', alpha=0.7, density=True)
+    plt.hist(df[df['CD4/8'] == 'CD8'][label], color='red', label='CD8', alpha=0.7, density=True)
     plt.title(label)
     plt.ylabel('Probability')
     plt.xlabel(label)
     plt.legend()
+    plt.show()
 ```
 
 <p align="center">
