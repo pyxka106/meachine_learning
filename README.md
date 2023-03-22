@@ -47,7 +47,6 @@ for label in cols[:-1]:
 - firstly need to encode the categorical parameters (v_gene and j_gene)
 
 ```python
-# adapted from https://towardsdatascience.com/top-machine-learning-algorithms-for-classification-2197870ff501
 def load_dataset(filename):
     data = read_csv(filename, sep=',')
 
