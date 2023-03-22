@@ -133,13 +133,16 @@ tpr_list = []
 
 for model in model_pipeline:
     model.fit(X_train_fs, y_train)
-    y_pred = model.predict(X_test_fs)
+     y_pred = model.predict(X_test_fs)
+    y_prob = model.predict_proba(X_test_fs)
+    print(y_prob)
     acc_list.append(accuracy_score(y_test, y_pred))
-    false_positive_rate, true_positive_rate, _ = roc_curve(y_test, y_pred)
+    false_positive_rate, true_positive_rate, _ = roc_curve(y_test, y_prob[:, 1])
     fpr_list.append(false_positive_rate)
     tpr_list.append(true_positive_rate)
-    auc_list.append(round(auc(false_positive_rate, true_positive_rate), 2))
+    auc_list.append(round(roc_auc_score(y_test, y_prob[:, 1]), 2))
     cm_list.append(confusion_matrix(y_test, y_pred))
+    print(cm_list)
  ```
  
 ## Plot the Evaluation Result
